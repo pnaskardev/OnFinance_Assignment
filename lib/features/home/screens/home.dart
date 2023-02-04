@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 
 class HomeScreen extends StatelessWidget 
 {
@@ -7,11 +8,11 @@ class HomeScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return Column
+    return  Column
     (
-      children: 
+      children: const 
       [
-        
+        CandleGraphWidget()
       ],
     );
   }
