@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 
 class HomeScreen extends StatelessWidget 
@@ -8,12 +9,26 @@ class HomeScreen extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return  Column
+    // return  Column
+    // (
+    //   children: const 
+    //   [
+    //     CandleGraphWidget()
+    //   ],
+    // );
+    return SafeArea
     (
-      children: const 
-      [
-        CandleGraphWidget()
-      ],
+      child: Scaffold
+      (
+        appBar: AppBar
+        (
+          title: const Text('Home'),
+        ),
+        body: Center
+        (
+          child: Text(dotenv.get('API_URL',fallback: 'API_NOT_FOUND'),),
+        ),
+      )
     );
   }
 }

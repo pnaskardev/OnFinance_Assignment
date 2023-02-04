@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:onfinance_assignment/features/home/screens/home.dart';
+import 'package:onfinance_assignment/models/environment.dart';
 import 'package:onfinance_assignment/utils/themes.dart';
 
-void main() 
+void main() async 
 {
+  await dotenv.load
+  (
+    fileName: Environment.filename
+  );
   runApp(const MyApp());
 }
 
