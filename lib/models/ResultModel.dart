@@ -1,13 +1,13 @@
 class Results 
 {
-  double? c;
-  double? h;
-  double? l;
-  int? n;
-  double? o;
-  int? t;
-  int? v;
-  double? vw;
+  num? c;
+  num? h;
+  num? l;
+  num? n;
+  num? o;
+  num? t;
+  num? v;
+  num? vw;
 
   Results({this.c, this.h, this.l, this.n, this.o, this.t, this.v, this.vw});
 

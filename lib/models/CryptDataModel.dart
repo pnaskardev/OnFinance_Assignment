@@ -3,10 +3,10 @@ import 'package:onfinance_assignment/models/ResultModel.dart';
 class CryptData 
 {
   bool? adjusted;
-  int? queryCount;
+  num? queryCount;
   String? requestId;
   List<Results>? results;
-  int? resultsCount;
+  num? resultsCount;
   String? status;
   String? ticker;
 
@@ -28,9 +28,11 @@ class CryptData
     adjusted = json['adjusted'];
     queryCount = json['queryCount'];
     requestId = json['request_id'];
-    if (json['results'] != null) {
+    if (json['results'] != null) 
+    {
       results = <Results>[];
-      json['results'].forEach((v) {
+      json['results'].forEach((v) 
+      {
         results!.add(Results.fromJson(v));
       });
     }

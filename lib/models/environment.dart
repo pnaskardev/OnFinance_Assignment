@@ -11,4 +11,8 @@ class Environment
   {
     return dotenv.env['API_URL'] ?? 'API_URL_NOT_FOUND';
   }
+   static String get endPoint
+  {
+    return dotenv.env['API_ENDPOINT'] ?? 'API_URL_NOT_FOUND';
+  }
 }

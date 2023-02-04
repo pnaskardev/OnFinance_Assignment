@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:onfinance_assignment/features/home/screens/home.dart';
 import 'package:onfinance_assignment/models/environment.dart';
+import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:onfinance_assignment/utils/themes.dart';
+import 'package:provider/provider.dart';
 
 void main() async 
 {
@@ -21,11 +23,18 @@ class MyApp extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return MaterialApp
+    return MultiProvider
     (
-      title: 'Flutter Demo',
-      theme: Themes.darkTheme,
-      home: const HomeScreen(),
+      providers:
+      [
+        ChangeNotifierProvider<CryptProvider>(create:(context)=>CryptProvider()),
+      ],
+      child: MaterialApp
+      (
+        title: 'Flutter Demo',
+        theme: Themes.darkTheme,
+        home: const HomeScreen(),
+      ),
     );
   }
 }
