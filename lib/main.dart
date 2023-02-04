@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:onfinance_assignment/features/home/screens/home.dart';
+import 'package:onfinance_assignment/utils/themes.dart';
 
-void main() {
+void main() 
+{
   runApp(const MyApp());
 }
 
@@ -16,10 +18,7 @@ class MyApp extends StatelessWidget
     return MaterialApp
     (
       title: 'Flutter Demo',
-      theme: ThemeData
-      (
-        primarySwatch: Colors.blue,
-      ),
+      theme: Themes.darkTheme,
       home: const HomeScreen(),
     );
   }
