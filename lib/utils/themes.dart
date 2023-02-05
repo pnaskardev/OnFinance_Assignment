@@ -23,20 +23,20 @@ class Themes
     (
       titleLarge: GoogleFonts.lexendDeca
       (
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-        letterSpacing: 4,
+        fontSize: 25,
+        // fontWeight: FontWeight.bold,
+        letterSpacing: 2,
       ),
       titleMedium: GoogleFonts.lexendDeca
       (
         fontSize: 20,
-        fontWeight: FontWeight.bold,
+        // fontWeight: FontWeight.bold,
         letterSpacing: 2,
       ),
       titleSmall: GoogleFonts.lexendDeca
       (
         fontSize: 10,
-        fontWeight: FontWeight.bold,
+        // fontWeight: FontWeight.bold,
         letterSpacing: 2,
       ),
     )

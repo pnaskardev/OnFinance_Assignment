@@ -32,21 +32,20 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) 
   {
+    var size=MediaQuery.of(context).size;
     log('build');
-    // return  Column
-    // (
-    //   children: const 
-    //   [
-    //     CandleGraphWidget()
-    //   ],
-    // );
     return SafeArea
     (
       child: Scaffold
       (
         appBar: AppBar
         (
-          title: const Text('Home'),
+          leading: const BackButton(),
+          title: const Text('Polygon'),
+          actions: 
+          [
+            IconButton(onPressed: (){}, icon:const Icon(Icons.bookmark_rounded))
+          ],
         ),
         body: Consumer<CryptProvider>
         (
@@ -71,7 +70,22 @@ class _HomeScreenState extends State<HomeScreen>
             (
               children:
               [
-                CandleGraphWidget(fetchedData: fetchedData,)
+                SizedBox
+                (
+                  height: size.height*0.6,
+                  width: size.width,
+                  child: CandleGraphWidget(fetchedData: fetchedData,)
+                ),
+
+                SizedBox
+                (
+                  width: size.width*0.8,
+                  child: Card
+                  (
+                    
+                    child: Center(child: Text('asad')),
+                  ),
+                )
               ] 
             );
           },
