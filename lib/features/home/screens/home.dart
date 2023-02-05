@@ -2,6 +2,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:onfinance_assignment/common/widgets/ExpansionTile.dart';
+import 'package:onfinance_assignment/features/home/screens/PortfolioExposureCard.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:provider/provider.dart';
@@ -66,27 +68,54 @@ class _HomeScreenState extends State<HomeScreen>
               );
             }
             final fetchedData=value.getData;
-            return Column
+            return SingleChildScrollView
             (
-              children:
-              [
-                SizedBox
-                (
-                  height: size.height*0.6,
-                  width: size.width,
-                  child: CandleGraphWidget(fetchedData: fetchedData,)
-                ),
-
-                SizedBox
-                (
-                  width: size.width*0.8,
-                  child: Card
+              child: Column
+              (
+                children:
+                [
+                  SizedBox
                   (
-                    
-                    child: Center(child: Text('asad')),
+                    height: size.height*0.6,
+                    width: size.width,
+                    child: CandleGraphWidget(fetchedData: fetchedData,)
                   ),
-                )
-              ] 
+            
+                  Padding
+                  (
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox
+                    (
+                      // width: size.width*0.8,
+                      child:  Card
+                      (
+                        child: Padding
+                        (
+                          padding:const EdgeInsets.all(10),
+                          child: ExpansionCard(),
+                        ),
+                      )
+                    ),
+                  ),
+
+                  const Padding
+                  (
+                    padding: EdgeInsets.all(8.0),
+                    child: SizedBox
+                    (
+                      // width: size.width*0.8,
+                      child:  Card
+                      (
+                        child: Padding
+                        (
+                          padding: EdgeInsets.all(10),
+                          child: PortfolioExpansion(),
+                        ),
+                      )
+                    ),
+                  ),
+                ] 
+              ),
             );
           },
         ),

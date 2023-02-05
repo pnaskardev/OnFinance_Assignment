@@ -4,14 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 class Styles
 {
    static TextStyle tabStyle =
-      GoogleFonts.lexendDeca
+      GoogleFonts.sourceSansPro
       (
-        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)
+        textStyle: const TextStyle( fontSize: 20)
       );
 
   static TextStyle teamName =
-      GoogleFonts.lexendDeca
-      (
-        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)
-      );
+    GoogleFonts.sourceSansPro
+    (
+      textStyle: const TextStyle( fontSize: 20)
+    );
 }
