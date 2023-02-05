@@ -1,13 +1,12 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget_services.dart';
-import 'package:onfinance_assignment/models/CryptDataModel.dart';
+import 'package:onfinance_assignment/models/ResultModel.dart';
 
 class CryptProvider with ChangeNotifier
 {
-  CryptData? _data;
-  bool isLoading=false;
+  List<Results>? _data;
+  bool isLoading=true;
   bool isError=false;
   final _service=CandleWidgetServices();
 
@@ -19,10 +18,8 @@ class CryptProvider with ChangeNotifier
     {
       isLoading=true;
       notifyListeners();
-
-      final response= await _service.getCryptData();
-      _data=response;
-      log(response.ticker!);
+      // _data=response;
+      _data=await _service.getCryptData();
       isLoading=false;
       notifyListeners();  
 

@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
@@ -17,17 +19,20 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() 
   {
-    super.initState();
+    log('initState');
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) 
     {
       Provider.of<CryptProvider>(context,listen: false).getCandleData();
     });
+    super.initState();
+    
+    // Provider.of<CryptProvider>(context,listen: false).getCandleData();
   }
   // @override
   @override
   Widget build(BuildContext context) 
   {
-  
+    log('build');
     // return  Column
     // (
     //   children: const 
@@ -62,7 +67,13 @@ class _HomeScreenState extends State<HomeScreen>
               );
             }
             final fetchedData=value.getData;
-            return CandleGraphWidget(fetchedData: fetchedData,);
+            return Column
+            (
+              children:
+              [
+                CandleGraphWidget(fetchedData: fetchedData,)
+              ] 
+            );
           },
         ),
       )
