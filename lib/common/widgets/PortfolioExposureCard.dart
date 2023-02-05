@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onfinance_assignment/utils/styles.dart';
 
 class PortfolioExpansion extends StatefulWidget 
 {
@@ -53,12 +54,50 @@ class _PortfolioExpansionState extends State<PortfolioExpansion>
             (
               title: Row
               (
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,  
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children:
                 [
-                  Text('Invested'),
-                  Text('Quantity'),
-                  Text('Broker'),
+                  Column
+                  (
+                    children: 
+                    [
+                      Text
+                      (
+                        'Invested',
+                        style: Styles.smallTabName,
+                      ),
+                      const Text
+                      (
+                        '6480',
+                        
+                      ),
+                    ],
+                  ),
+                  Column
+                  (
+                    children:
+                    [
+                      Text
+                      (
+                        'Quantity',
+                        style: Styles.smallTabName,
+                      ),
+                      const Text('1.5'),
+                    ],
+                  ),
+                  Column
+                  (
+                    children: 
+                    [
+                      Text
+                      (
+                        'Broker',
+                        style: Styles.smallTabName,
+                      ),
+                      const Icon(Icons.currency_bitcoin)
+                    ],
+                  ),
                 ],
               ),
             ),

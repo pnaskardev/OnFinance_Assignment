@@ -14,4 +14,10 @@ class Styles
     (
       textStyle: const TextStyle( fontSize: 20)
     );
+    static TextStyle smallTabName =
+    GoogleFonts.sourceSansPro
+    (
+      textStyle: const TextStyle( fontSize: 15),
+      color: Colors.blueGrey
+    );
 }
