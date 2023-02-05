@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:onfinance_assignment/features/home/screens/home.dart';
+import 'package:onfinance_assignment/models/environment.dart';
+import 'package:onfinance_assignment/providers/CryptProvider.dart';
+import 'package:onfinance_assignment/utils/themes.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async 
+{
+  await dotenv.load
+  (
+    fileName: Environment.filename
+  );
   runApp(const MyApp());
 }
 
@@ -13,14 +23,18 @@ class MyApp extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return MaterialApp
+    return MultiProvider
     (
-      title: 'Flutter Demo',
-      theme: ThemeData
+      providers:
+      [
+        ChangeNotifierProvider<CryptProvider>(create:(context)=>CryptProvider()),
+      ],
+      child: MaterialApp
       (
-        primarySwatch: Colors.blue,
+        title: 'Flutter Demo',
+        theme: Themes.darkTheme,
+        home: const HomeScreen(),
       ),
-      home: const HomeScreen(),
     );
   }
 }
