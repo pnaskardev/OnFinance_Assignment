@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:onfinance_assignment/common/widgets/ExpansionTile.dart';
 import 'package:onfinance_assignment/common/widgets/PortfolioExposureCard.dart';
 import 'package:onfinance_assignment/common/widgets/historical_widget.dart';
+import 'package:onfinance_assignment/common/widgets/about_widget.dart';
+import 'package:onfinance_assignment/common/widgets/technical_indicators.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:provider/provider.dart';
@@ -133,6 +135,26 @@ class _HomeScreenState extends State<HomeScreen>
                   )
                 ),
               ),
+
+              const Padding
+              (
+                padding: EdgeInsets.all(16.0),
+                child: SizedBox
+                (
+                  child:  AboutWidget()
+                ),
+              ),
+
+               const Padding
+              (
+                padding: EdgeInsets.all(16.0),
+                child: SizedBox
+                (
+                  child:  TechnicalIndicators()
+                ),
+              ),
+
+
             ] 
           ),
         ),
