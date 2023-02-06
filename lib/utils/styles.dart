@@ -14,6 +14,16 @@ class Styles
     (
       textStyle: const TextStyle( fontSize: 20)
     );
+
+    static TextStyle buttonText =
+    GoogleFonts.sourceSansPro
+    (
+      textStyle: const TextStyle
+      (
+        fontSize: 15,
+        color: Colors.white
+      )
+    );
     static TextStyle smallTabName =
     GoogleFonts.sourceSansPro
     (

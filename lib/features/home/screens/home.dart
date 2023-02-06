@@ -51,91 +51,91 @@ class _HomeScreenState extends State<HomeScreen>
           ],
         ),
         body: SingleChildScrollView
-            (
-              child: Column
+        (
+          child: Column
+          (
+            children:
+            [
+              SizedBox
               (
-                children:
-                [
-                  SizedBox
-                  (
-                    height: size.height*0.6,
-                    width: size.width,
-                    child: Consumer<CryptProvider>
-                    (
-                      builder: (context,value,child)
-                      {
-                        if(value.isLoading==true)
-                        {
-                          return const Center
-                          (
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        else if(value.isError==true)
-                        {
-                          return const Center
-                          (
-                            child: Icon(Icons.error)
-                          );
-                        }
-                        final fetchedData=value.getData;
-                        return CandleGraphWidget(fetchedData: fetchedData,);
-                      },
-                      // child: CandleGraphWidget(fetchedData: fetchedData,)
-                    )
-                  ),
-            
-                  Padding
-                  (
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox
-                    (
-                      // width: size.width*0.8,
-                      child:  Card
+                height: size.height*0.6,
+                width: size.width,
+                child: Consumer<CryptProvider>
+                (
+                  builder: (context,value,child)
+                  {
+                    if(value.isLoading==true)
+                    {
+                      return const Center
                       (
-                        child: Padding
-                        (
-                          padding:const EdgeInsets.all(10),
-                          child: ExpansionCard(),
-                        ),
-                      )
-                    ),
-                  ),
-
-                  const Padding
-                  (
-                    padding: EdgeInsets.all(8.0),
-                    child: SizedBox
-                    (
-                      child:  Card
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    else if(value.isError==true)
+                    {
+                      return const Center
                       (
-                        child: Padding
-                        (
-                          padding: EdgeInsets.all(10),
-                          child: PortfolioExpansion(),
-                        ),
-                      )
-                    ),
-                  ),
-
-                  const Padding
-                  (
-                    padding: EdgeInsets.all(8.0),
-                    child: SizedBox
-                    (
-                      child:  Card
-                      (
-                        child: Padding
-                        (
-                          padding: EdgeInsets.all(10),
-                          child: HistoricalWidget(),
-                        ),
-                      )
-                    ),
-                  ),
-                ] 
+                        child: Icon(Icons.error)
+                      );
+                    }
+                    final fetchedData=value.getData;
+                    return CandleGraphWidget(fetchedData: fetchedData,);
+                  },
+                  // child: CandleGraphWidget(fetchedData: fetchedData,)
+                )
               ),
-            ),
+        
+              Padding
+              (
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox
+                (
+                  // width: size.width*0.8,
+                  child:  Card
+                  (
+                    child: Padding
+                    (
+                      padding:const EdgeInsets.all(10),
+                      child: ExpansionCard(),
+                    ),
+                  )
+                ),
+              ),
+
+              const Padding
+              (
+                padding: EdgeInsets.all(8.0),
+                child: SizedBox
+                (
+                  child:  Card
+                  (
+                    child: Padding
+                    (
+                      padding: EdgeInsets.all(10),
+                      child: PortfolioExpansion(),
+                    ),
+                  )
+                ),
+              ),
+
+              const Padding
+              (
+                padding: EdgeInsets.all(8.0),
+                child: SizedBox
+                (
+                  child:  Card
+                  (
+                    child: Padding
+                    (
+                      padding: EdgeInsets.all(10),
+                      child: HistoricalWidget(),
+                    ),
+                  )
+                ),
+              ),
+            ] 
+          ),
+        ),
       )
     );
   }
