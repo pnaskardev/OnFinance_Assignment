@@ -18,22 +18,22 @@ class Themes
     useMaterial3: true,
     scaffoldBackgroundColor: Colors.grey.shade900,
     colorScheme: const ColorScheme.dark(),
-    fontFamily: GoogleFonts.lexendDeca().fontFamily,
+    fontFamily: GoogleFonts.sourceSansPro().fontFamily,
     textTheme: TextTheme
     (
-      titleLarge: GoogleFonts.lexendDeca
+      titleLarge: GoogleFonts.sourceSansPro
       (
         fontSize: 25,
         // fontWeight: FontWeight.bold,
         letterSpacing: 2,
       ),
-      titleMedium: GoogleFonts.lexendDeca
+      titleMedium: GoogleFonts.sourceSansPro
       (
         fontSize: 20,
         // fontWeight: FontWeight.bold,
         letterSpacing: 2,
       ),
-      titleSmall: GoogleFonts.lexendDeca
+      titleSmall: GoogleFonts.sourceSansPro
       (
         fontSize: 10,
         // fontWeight: FontWeight.bold,
@@ -49,19 +49,19 @@ class Themes
     colorScheme: const ColorScheme.light(),
     textTheme: TextTheme
     (
-      titleLarge: GoogleFonts.lexendDeca
+      titleLarge: GoogleFonts.sourceSansPro
       (
         fontSize: 30,
         fontWeight: FontWeight.bold,
         letterSpacing: 4,
       ),
-      titleMedium: GoogleFonts.lexendDeca
+      titleMedium: GoogleFonts.sourceSansPro
       (
         fontSize: 20,
         fontWeight: FontWeight.bold,
         letterSpacing: 2,
       ),
-      titleSmall: GoogleFonts.lexendDeca
+      titleSmall: GoogleFonts.sourceSansPro
       (
         fontSize: 10,
         fontWeight: FontWeight.bold,

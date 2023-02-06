@@ -8,10 +8,10 @@ import 'package:provider/provider.dart';
 
 void main() async 
 {
-  await dotenv.load
-  (
-    fileName: Environment.filename
-  );
+  // await dotenv.load
+  // (
+  //   fileName: Environment.filename
+  // );
   runApp(const MyApp());
 }
 
