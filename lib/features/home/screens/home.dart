@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:onfinance_assignment/common/widgets/ExpansionTile.dart';
 import 'package:onfinance_assignment/common/widgets/PortfolioExposureCard.dart';
+import 'package:onfinance_assignment/common/widgets/historical_widget.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:provider/provider.dart';
@@ -49,26 +50,7 @@ class _HomeScreenState extends State<HomeScreen>
             IconButton(onPressed: (){}, icon:const Icon(Icons.bookmark_rounded))
           ],
         ),
-        body: Consumer<CryptProvider>
-        (
-          builder: (context,value,child)
-          {
-            if(value.isLoading==true)
-            {
-              return const Center
-              (
-                child: CircularProgressIndicator(),
-              );
-            }
-            else if(value.isError==true)
-            {
-              return const Center
-              (
-                child: Icon(Icons.error)
-              );
-            }
-            final fetchedData=value.getData;
-            return SingleChildScrollView
+        body: SingleChildScrollView
             (
               child: Column
               (
@@ -78,7 +60,29 @@ class _HomeScreenState extends State<HomeScreen>
                   (
                     height: size.height*0.6,
                     width: size.width,
-                    child: CandleGraphWidget(fetchedData: fetchedData,)
+                    child: Consumer<CryptProvider>
+                    (
+                      builder: (context,value,child)
+                      {
+                        if(value.isLoading==true)
+                        {
+                          return const Center
+                          (
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        else if(value.isError==true)
+                        {
+                          return const Center
+                          (
+                            child: Icon(Icons.error)
+                          );
+                        }
+                        final fetchedData=value.getData;
+                        return CandleGraphWidget(fetchedData: fetchedData,);
+                      },
+                      // child: CandleGraphWidget(fetchedData: fetchedData,)
+                    )
                   ),
             
                   Padding
@@ -124,17 +128,14 @@ class _HomeScreenState extends State<HomeScreen>
                         child: Padding
                         (
                           padding: EdgeInsets.all(10),
-                          child: PortfolioExpansion(),
+                          child: HistoricalWidget(),
                         ),
                       )
                     ),
                   ),
-                  
                 ] 
               ),
-            );
-          },
-        ),
+            ),
       )
     );
   }
