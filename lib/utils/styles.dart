@@ -28,7 +28,15 @@ class Styles
         color: Colors.white
       )
     );
-
+    static TextStyle subTitle1 =
+    GoogleFonts.sourceSansPro
+    (
+      textStyle: const TextStyle
+      (
+        fontSize: 20,
+        color: blueColor
+      )
+    );
     static TextStyle buttonText =
     GoogleFonts.sourceSansPro
     (
@@ -36,6 +44,15 @@ class Styles
       (
         fontSize: 15,
         color: Colors.white
+      )
+    );
+    static TextStyle buttonText2 =
+    GoogleFonts.sourceSansPro
+    (
+      textStyle: const TextStyle
+      (
+        fontSize: 15,
+        color: Colors.black
       )
     );
     static TextStyle smallTabName =

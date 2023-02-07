@@ -3,18 +3,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:onfinance_assignment/common/widgets/cryptobar.dart';
+import 'package:onfinance_assignment/common/widgets/floatingActionButton.dart';
 import 'package:onfinance_assignment/features/about/screens/about_screen.dart';
 import 'package:onfinance_assignment/features/portfolioExposure/screens/portfolio_screen.dart';
-import 'package:onfinance_assignment/features/portfolioExposure/widgets/PortfolioExposureCard.dart';
 import 'package:onfinance_assignment/common/widgets/graph_row.dart';
 import 'package:onfinance_assignment/features/analystRating/screens/analyst_main_screen.dart';
-import 'package:onfinance_assignment/features/historySection/screens/historical_screen.dart';
-import 'package:onfinance_assignment/features/about/widgets/about_widget.dart';
 import 'package:onfinance_assignment/features/technical_indicators/widgets/technical_indicators.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
-import 'package:onfinance_assignment/utils/colors.dart';
-import 'package:onfinance_assignment/utils/styles.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget 
@@ -91,6 +88,8 @@ class _HomeScreenState extends State<HomeScreen>
             (
               children:
               [
+                // 
+                const CryptoBar(),
                 SizedBox
                 (
                   height: size.height*0.6,
@@ -130,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen>
                   
                 const AboutScreen(),  
                   
-                
+                const TechnicalIndicators()
                   
                   
               ] 
@@ -139,77 +138,7 @@ class _HomeScreenState extends State<HomeScreen>
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: /*isFabVisible ?*/ ClipRRect
-        (
-
-          child: Container
-          (
-            
-            decoration: const BoxDecoration
-            (
-              color: Colors.black,
-              borderRadius: BorderRadius.all(Radius.circular(10.0))
-            ),
-            child: Padding
-            (
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Row
-              (
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: 
-                [
-                  Flexible
-                  (
-                    child:SizedBox
-                    (
-                      height: size.height*0.06,
-                      width: size.width*0.3,
-                      child: ElevatedButton
-                      (
-                        onPressed: (){},
-                        style: ElevatedButton.styleFrom
-                        (
-                          textStyle: Styles.buttonText,
-                          backgroundColor: blueColor,
-                          shape: RoundedRectangleBorder
-                          (
-                            borderRadius: BorderRadius.circular(15)
-                          ),
-                          elevation: 15.0,
-                        ),
-                        child: const Text('Buy'),
-                      ),
-                    ) 
-                  ),
-                  Flexible
-                  (
-                    child:SizedBox
-                    (
-                      width: size.width*0.3,
-                      height: size.height*0.06,
-                      child: ElevatedButton
-                      (
-                        
-                        onPressed: (){},
-                        style: ElevatedButton.styleFrom
-                        (
-                          textStyle: Styles.buttonText,
-                          backgroundColor: blueColor,
-                          shape: RoundedRectangleBorder
-                          (
-                            borderRadius: BorderRadius.circular(15)
-                          ),
-                          elevation: 15.0,
-                        ),
-                        child: const Text('Sell'),
-                      ),
-                    ) 
-                  )
-                ],
-              ),
-            ),
-          ),
-        )
+        floatingActionButton: /*isFabVisible ?*/const FloatingAButton()
         // :
         // null
       )
