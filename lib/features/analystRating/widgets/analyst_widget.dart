@@ -1,17 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:onfinance_assignment/utils/colors.dart';
 import 'package:onfinance_assignment/utils/static_data.dart';
 import 'package:onfinance_assignment/utils/styles.dart';
-import 'package:onfinance_assignment/utils/utils.dart';
 
-class ExpansionCard extends StatefulWidget {
+class AnalystWidget extends StatefulWidget {
+  const AnalystWidget({super.key});
+
   @override
-  _ExpansionCardState createState() => _ExpansionCardState();
+  State<AnalystWidget> createState() => _AnalystWidgetState();
 }
 
-class _ExpansionCardState extends State<ExpansionCard> 
-{
+class _AnalystWidgetState extends State<AnalystWidget> {
   bool isExpanded = false;
   
   int _index=0;
@@ -117,5 +115,4 @@ class _ExpansionCardState extends State<ExpansionCard>
       ),
     );
   }
-
 }

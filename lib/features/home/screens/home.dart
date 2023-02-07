@@ -3,11 +3,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:onfinance_assignment/common/widgets/ExpansionTile.dart';
-import 'package:onfinance_assignment/common/widgets/PortfolioExposureCard.dart';
-import 'package:onfinance_assignment/common/widgets/historical_widget.dart';
-import 'package:onfinance_assignment/common/widgets/about_widget.dart';
-import 'package:onfinance_assignment/common/widgets/technical_indicators.dart';
+import 'package:onfinance_assignment/features/about/screens/about_screen.dart';
+import 'package:onfinance_assignment/features/portfolioExposure/screens/portfolio_screen.dart';
+import 'package:onfinance_assignment/features/portfolioExposure/widgets/PortfolioExposureCard.dart';
+import 'package:onfinance_assignment/common/widgets/graph_row.dart';
+import 'package:onfinance_assignment/features/analystRating/screens/analyst_main_screen.dart';
+import 'package:onfinance_assignment/features/historySection/screens/historical_screen.dart';
+import 'package:onfinance_assignment/features/about/widgets/about_widget.dart';
+import 'package:onfinance_assignment/features/technical_indicators/widgets/technical_indicators.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:onfinance_assignment/utils/colors.dart';
@@ -117,279 +120,17 @@ class _HomeScreenState extends State<HomeScreen>
                   )
                 ),
               
-                Padding
-                (
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container
-                  (
-                    color: Colors.black,
-                    width: size.width,
-                    child: Row
-                    (
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: 
-                      [
-                        
-                        Flexible
-                        (
-                          child:SizedBox
-                          (
-                            height: size.height*0.03,
-                            child: ElevatedButton
-                            (
-                              onPressed: (){},
-                              style: ElevatedButton.styleFrom
-                              (
-                                textStyle: Styles.buttonText,
-                                backgroundColor: blueColor,
-                                shape: RoundedRectangleBorder
-                                (
-                                  borderRadius: BorderRadius.circular(5)
-                                ),
-                                elevation: 15.0,
-                              ),
-                              child: const Text('1H'),
-                            ),
-                          ) 
-                        ),
-                        Flexible
-                        (
-                          child:SizedBox
-                          (
-                            height: size.height*0.03,
-                            child: ElevatedButton
-                            (
-                              onPressed: (){},
-                              style: ElevatedButton.styleFrom
-                              (
-                                textStyle: Styles.buttonText,
-                                backgroundColor: blueColor,
-                                shape: RoundedRectangleBorder
-                                (
-                                  borderRadius: BorderRadius.circular(5)
-                                ),
-                                elevation: 15.0,
-                              ),
-                              child: const Text('1D'),
-                            ),
-                          ) 
-                        ),
-                        Flexible
-                        (
-                          child:SizedBox
-                          (
-                            height: size.height*0.03,
-                            child: ElevatedButton
-                            (
-                              onPressed: (){},
-                              style: ElevatedButton.styleFrom
-                              (
-                                textStyle: Styles.buttonText,
-                                backgroundColor: blueColor,
-                                shape: RoundedRectangleBorder
-                                (
-                                  borderRadius: BorderRadius.circular(5)
-                                ),
-                                elevation: 15.0,
-                              ),
-                              child: const Text('1W'),
-                            ),
-                          ) 
-                        ),
-                        Flexible
-                        (
-                          child:SizedBox
-                          (
-                            height: size.height*0.03,
-                        
-                            child: ElevatedButton
-                            (
-                              onPressed: (){},
-                              style: ElevatedButton.styleFrom
-                              (
-                                textStyle: Styles.buttonText,
-                                backgroundColor: blueColor,
-                                shape: RoundedRectangleBorder
-                                (
-                                  borderRadius: BorderRadius.circular(5)
-                                ),
-                                elevation: 15.0,
-                              ),
-                              child: const Text('1M'),
-                            ),
-                          ) 
-                        ),
-                        Flexible
-                        (
-                          child:SizedBox
-                          (
-                            height: size.height*0.03,
-                           
-                            child: ElevatedButton
-                            (
-                              onPressed: (){},
-                              style: ElevatedButton.styleFrom
-                              (
-                                textStyle: Styles.buttonText,
-                                backgroundColor: blueColor,
-                                shape: RoundedRectangleBorder
-                                (
-                                  borderRadius: BorderRadius.circular(5)
-                                ),
-                                elevation: 15.0,
-                              ),
-                              child: const Text('5Y'),
-                            ),
-                          ) 
-                        ),
-                        Flexible
-                        (
-                          child: SizedBox
-                          (
-                            child: Align
-                            (
-                              alignment: Alignment.center,
-                              child: ElevatedButton.icon
-                              (
-                                onPressed: (){}, 
-                                icon: const Icon(Icons.graphic_eq_outlined), 
-                                label: const Text(''),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                const GraphRow(),
 
-                Padding
-                (
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox
-                  (
-                    // width: size.width*0.8,
-                    child:  Card
-                    (
-                      child: Padding
-                      (
-                        padding:const EdgeInsets.all(10),
-                        child: Column
-                        (
-                          children: 
-                          [
-                            
-                            ExpansionCard(),
-                            Align
-                            (
-                              alignment: Alignment.center,
-                              child: ClipRRect
-                              (
-                                borderRadius: const BorderRadius.only
-                                (
-                                  bottomLeft: Radius.circular(10.0),
-                                  bottomRight: Radius.circular(10.0)
-                                ),
-                                child: SizedBox
-                                (
-                                  height: size.height*0.009,
-                                  width: size.width*0.30,
-                                  child: const DecoratedBox
-                                  (
-                                    decoration:  BoxDecoration
-                                    (
-                                      color:  Color.fromRGBO(56, 229, 187,1),
-                                    )
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ),
-                ),
+                const AnalystMainScreen(),
                   
-                Padding
-                (
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox
-                  (
-                    child:  Card
-                    (
-                      child: Padding
-                      (
-                        padding: const EdgeInsets.all(10),
-                        child: Column
-                        (
-                          children: 
-                          [
-                            const PortfolioExpansion(),
-                            Align
-                            (
-                              alignment: Alignment.center,
-                              child: ClipRRect
-                              (
-                                borderRadius: const BorderRadius.only
-                                (
-                                  bottomLeft: Radius.circular(10.0),
-                                  bottomRight: Radius.circular(10.0)
-                                ),
-                                child: SizedBox
-                                (
-                                  height: size.height*0.009,
-                                  width: size.width*0.30,
-                                  child: const DecoratedBox
-                                  (
-                                    decoration:  BoxDecoration
-                                    (
-                                      color:  Color.fromRGBO(248, 181, 69,1),
-                                    )
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ),
-                ),
+                
                   
-                const Padding
-                (
-                  padding: EdgeInsets.all(8.0),
-                  child: SizedBox
-                  (
-                    child:  Card
-                    (
-                      child:  Padding
-                      (
-                        padding: EdgeInsets.all(10),
-                        child: HistoricalWidget(),
-                      ),
-                    )
-                  ),
-                ),
+                const PortFolioScreen(),
                   
-                const Padding
-                (
-                  padding: EdgeInsets.all(16.0),
-                  child: SizedBox
-                  (
-                    child:  AboutWidget()
-                  ),
-                ),
+                const AboutScreen(),  
                   
-                 const Padding
-                (
-                  padding: EdgeInsets.all(16.0),
-                  child: SizedBox
-                  (
-                    child:  TechnicalIndicators()
-                  ),
-                ),
+                
                   
                   
               ] 

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:onfinance_assignment/features/home/screens/home.dart';
-import 'package:onfinance_assignment/features/home/screens/test.dart';
-import 'package:onfinance_assignment/models/environment.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:onfinance_assignment/utils/themes.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +31,7 @@ class MyApp extends StatelessWidget
       (
         title: 'Flutter Demo',
         theme: Themes.darkTheme,
-        home: const name(),
+        home: const HomeScreen(),
       ),
     );
   }
