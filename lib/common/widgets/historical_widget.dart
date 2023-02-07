@@ -18,10 +18,38 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
   @override
   Widget build(BuildContext context) 
   {
+    var size=MediaQuery.of(context).size;
     return Column
     (
       children: 
       [
+        Align
+        (
+          alignment: Alignment.center,
+          child: Padding
+          (
+            padding:const EdgeInsets.all(8.0),
+            child: Center
+            (
+              child:  ClipRRect
+              (
+                borderRadius: const BorderRadius.only
+                (
+                  topLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0)
+                ),
+                child: Container
+                (
+                  color: const Color.fromRGBO(40, 40, 49,1),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Historical Yield',style:Styles.head1,),
+                  )
+                ),
+              )
+            ),
+          ),
+        ),
         Padding
         (
           padding: const EdgeInsets.all(10.0),
@@ -143,7 +171,7 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: const
                 [
-                   Flexible
+                  Flexible
                   (
                     child: SizedBox
                     (

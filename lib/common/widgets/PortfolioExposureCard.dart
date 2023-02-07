@@ -35,6 +35,10 @@ class _PortfolioExpansionState extends State<PortfolioExpansion>
                       'Your Portfolio Exposure',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle
+                      (
+                        color: Color.fromRGBO(248, 181, 69,1)
+                      ),
                     ),
                     
                   ),

@@ -19,6 +19,15 @@ class Styles
         color: blueColor
       )
     );
+    static TextStyle head2 =
+    GoogleFonts.sourceSansPro
+    (
+      textStyle: const TextStyle
+      (
+        fontSize: 25,
+        color: Colors.white
+      )
+    );
 
     static TextStyle buttonText =
     GoogleFonts.sourceSansPro

@@ -2,6 +2,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:onfinance_assignment/common/widgets/ExpansionTile.dart';
 import 'package:onfinance_assignment/common/widgets/PortfolioExposureCard.dart';
 import 'package:onfinance_assignment/common/widgets/historical_widget.dart';
@@ -23,6 +24,7 @@ class HomeScreen extends StatefulWidget
 
 class _HomeScreenState extends State<HomeScreen> 
 {
+  bool isFabVisible=false;
   @override
   void initState() 
   {
@@ -54,163 +56,274 @@ class _HomeScreenState extends State<HomeScreen>
             IconButton(onPressed: (){}, icon:const Icon(Icons.bookmark_rounded))
           ],
         ),
-        body: SingleChildScrollView
+        body: NotificationListener<UserScrollNotification>
         (
-          child: Column
+          onNotification: (notification)
+          {
+            if(notification.direction==ScrollDirection.forward)
+            {
+              if(!isFabVisible)
+              {
+                setState(() 
+                {
+                  isFabVisible=true;  
+                });
+              }
+            }
+            else if(notification.direction==ScrollDirection.reverse)
+            {
+              if(isFabVisible==true)
+              {
+                setState(() 
+                {
+                  isFabVisible=false;  
+                });
+              }
+            }
+            return true;
+          },
+          child: SingleChildScrollView
           (
-            children:
-            [
-              SizedBox
-              (
-                height: size.height*0.6,
-                width: size.width,
-                child: Consumer<CryptProvider>
+            child: Column
+            (
+              children:
+              [
+                SizedBox
                 (
-                  builder: (context,value,child)
-                  {
-                    if(value.isLoading==true)
+                  height: size.height*0.6,
+                  width: size.width,
+                  child: Consumer<CryptProvider>
+                  (
+                    builder: (context,value,child)
                     {
-                      return const Center
+                      if(value.isLoading==true)
+                      {
+                        return const Center
+                        (
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      else if(value.isError==true)
+                      {
+                        return const Center
+                        (
+                          child: Icon(Icons.error)
+                        );
+                      }
+                      final fetchedData=value.getData;
+                      return CandleGraphWidget(fetchedData: fetchedData,);
+                    },
+                    // child: CandleGraphWidget(fetchedData: fetchedData,)
+                  )
+                ),
+                    
+                Padding
+                (
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox
+                  (
+                    // width: size.width*0.8,
+                    child:  Card
+                    (
+                      child: Padding
                       (
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    else if(value.isError==true)
-                    {
-                      return const Center
+                        padding:const EdgeInsets.all(10),
+                        child: Column
+                        (
+                          children: 
+                          [
+                            ExpansionCard(),
+                            Align
+                            (
+                              alignment: Alignment.center,
+                              child: ClipRRect
+                              (
+                                borderRadius: const BorderRadius.only
+                                (
+                                  bottomLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0)
+                                ),
+                                child: SizedBox
+                                (
+                                  height: size.height*0.009,
+                                  width: size.width*0.30,
+                                  child: const DecoratedBox
+                                  (
+                                    decoration:  BoxDecoration
+                                    (
+                                      color:  Color.fromRGBO(56, 229, 187,1),
+                                    )
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ),
+                ),
+                  
+                Padding
+                (
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox
+                  (
+                    child:  Card
+                    (
+                      child: Padding
                       (
-                        child: Icon(Icons.error)
-                      );
-                    }
-                    final fetchedData=value.getData;
-                    return CandleGraphWidget(fetchedData: fetchedData,);
-                  },
-                  // child: CandleGraphWidget(fetchedData: fetchedData,)
-                )
-              ),
-        
-              Padding
-              (
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox
+                        padding: const EdgeInsets.all(10),
+                        child: Column
+                        (
+                          children: 
+                          [
+                            const PortfolioExpansion(),
+                            Align
+                            (
+                              alignment: Alignment.center,
+                              child: ClipRRect
+                              (
+                                borderRadius: const BorderRadius.only
+                                (
+                                  bottomLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0)
+                                ),
+                                child: SizedBox
+                                (
+                                  height: size.height*0.009,
+                                  width: size.width*0.30,
+                                  child: const DecoratedBox
+                                  (
+                                    decoration:  BoxDecoration
+                                    (
+                                      color:  Color.fromRGBO(248, 181, 69,1),
+                                    )
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ),
+                ),
+                  
+                const Padding
                 (
-                  // width: size.width*0.8,
-                  child:  Card
+                  padding: EdgeInsets.all(8.0),
+                  child: SizedBox
                   (
-                    child: Padding
+                    child:  Card
                     (
-                      padding:const EdgeInsets.all(10),
-                      child: ExpansionCard(),
-                    ),
-                  )
+                      child:  Padding
+                      (
+                        padding: EdgeInsets.all(10),
+                        child: HistoricalWidget(),
+                      ),
+                    )
+                  ),
                 ),
-              ),
-
-              const Padding
-              (
-                padding: EdgeInsets.all(8.0),
-                child: SizedBox
+                  
+                const Padding
                 (
-                  child:  Card
+                  padding: EdgeInsets.all(16.0),
+                  child: SizedBox
                   (
-                    child: Padding
-                    (
-                      padding: EdgeInsets.all(10),
-                      child: PortfolioExpansion(),
-                    ),
-                  )
+                    child:  AboutWidget()
+                  ),
                 ),
-              ),
-
-              const Padding
-              (
-                padding: EdgeInsets.all(8.0),
-                child: SizedBox
+                  
+                 const Padding
                 (
-                  child:  Card
+                  padding: EdgeInsets.all(16.0),
+                  child: SizedBox
                   (
-                    child: Padding
-                    (
-                      padding: EdgeInsets.all(10),
-                      child: HistoricalWidget(),
-                    ),
-                  )
+                    child:  TechnicalIndicators()
+                  ),
                 ),
-              ),
-
-              const Padding
-              (
-                padding: EdgeInsets.all(16.0),
-                child: SizedBox
-                (
-                  child:  AboutWidget()
-                ),
-              ),
-
-               const Padding
-              (
-                padding: EdgeInsets.all(16.0),
-                child: SizedBox
-                (
-                  child:  TechnicalIndicators()
-                ),
-              ),
-
-
-            ] 
+                  
+                  
+              ] 
+            ),
+            
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Row
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: /*isFabVisible ?*/ ClipRRect
         (
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: 
-          [
-            Flexible
+
+          child: Container
+          (
+            
+            decoration: const BoxDecoration
             (
-              child:SizedBox
-              (
-                child: ElevatedButton
-                (
-                  onPressed: (){},
-                  style: ElevatedButton.styleFrom
-                  (
-                    textStyle: Styles.buttonText,
-                    backgroundColor: blueColor,
-                    shape: RoundedRectangleBorder
-                    (
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    elevation: 15.0,
-                  ),
-                  child: const Text('Buy'),
-                ),
-              ) 
+              color: Colors.black,
+              borderRadius: BorderRadius.all(Radius.circular(10.0))
             ),
-            Flexible
+            child: Padding
             (
-              child:SizedBox
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row
               (
-                child: ElevatedButton
-                (
-                  
-                  onPressed: (){},
-                  style: ElevatedButton.styleFrom
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: 
+                [
+                  Flexible
                   (
-                    textStyle: Styles.buttonText,
-                    backgroundColor: blueColor,
-                    shape: RoundedRectangleBorder
+                    child:SizedBox
                     (
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    elevation: 15.0,
+                      height: size.height*0.06,
+                      width: size.width*0.3,
+                      child: ElevatedButton
+                      (
+                        onPressed: (){},
+                        style: ElevatedButton.styleFrom
+                        (
+                          textStyle: Styles.buttonText,
+                          backgroundColor: blueColor,
+                          shape: RoundedRectangleBorder
+                          (
+                            borderRadius: BorderRadius.circular(15)
+                          ),
+                          elevation: 15.0,
+                        ),
+                        child: const Text('Buy'),
+                      ),
+                    ) 
                   ),
-                  child: const Text('Sell'),
-                ),
-              ) 
-            )
-          ],
-        ),
+                  Flexible
+                  (
+                    child:SizedBox
+                    (
+                      width: size.width*0.3,
+                      height: size.height*0.06,
+                      child: ElevatedButton
+                      (
+                        
+                        onPressed: (){},
+                        style: ElevatedButton.styleFrom
+                        (
+                          textStyle: Styles.buttonText,
+                          backgroundColor: blueColor,
+                          shape: RoundedRectangleBorder
+                          (
+                            borderRadius: BorderRadius.circular(15)
+                          ),
+                          elevation: 15.0,
+                        ),
+                        child: const Text('Sell'),
+                      ),
+                    ) 
+                  )
+                ],
+              ),
+            ),
+          ),
+        )
+        // :
+        // null
       )
     );
   }

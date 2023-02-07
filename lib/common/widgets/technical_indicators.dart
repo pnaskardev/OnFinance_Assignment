@@ -38,6 +38,10 @@ class TechnicalIndicators extends StatelessWidget {
                 'This measures the sentiment of the investors for that particaula stock or coin based on all the news articles, blogs, research papers, financial content featuring it.'
               ),
             ),
+            const SizedBox
+            (
+              height: 10,
+            ),
             ListTile
             (
               title: Row
@@ -54,6 +58,10 @@ class TechnicalIndicators extends StatelessWidget {
                 'This measures the price movement of the securities, tell us if the stock or coin is overbought (above 70) or oversold (below 30)'
               ),
             ),
+            const SizedBox
+            (
+              height: 10,
+            ),
             ListTile
             (
               title: Row
@@ -69,6 +77,10 @@ class TechnicalIndicators extends StatelessWidget {
               (
                 'This measures how much the stock or coin price is moving in any of the directions (upwards, downwards or directional) with respect to time.'
               ),
+            ),
+            const SizedBox
+            (
+              height: 10,
             ),
 
           ],

@@ -52,4 +52,14 @@ class StaticData
     ),
 
   ];
+
+
+  final List<String> buyStatusList=
+  [
+    "Strong Buy",
+    "Buy",
+    "Hold",
+    "Sell",
+    "Strong Sell"
+  ];
 }
