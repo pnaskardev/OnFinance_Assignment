@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) 
   {
+    var size=MediaQuery.of(context).size;
     log('build');
     return SafeArea
     (
@@ -64,82 +65,75 @@ class _HomeScreenState extends State<HomeScreen>
             [
                CryptoBar(),
 
-              Stack
+              const GraphScreen(),
+              Row
               (
-                children:
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: 
                 [
-                  Positioned
-                  (
-                    bottom: 60,
-                    left: 250,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
                     child: ElevatedButton.icon
-                    (
-                      onPressed: ()
-                      {
-                        log('Bottom Sheet button pressed');
-                       
-                        // Scaffold.of(context).showBottomSheet((context) 
-                        // {
-                        //    return const BottomModalSheet();
-                        // });
-                        setState(() 
-                        {
-                          isFabVisible=false;  
-                        });
-                        _scaffoldKey.currentState!.showBottomSheet((context)
-                        {
-                          return Container
-                          (
-                            height: 200,
-                            color: Colors.amber,
-                            child: Center
-                            (
-                              child: Column
-                              (
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>
-                                [
-                                  ListTile
-                                  (
-                                    leading: Text('Indicators'),
-                                    trailing: ElevatedButton
-                                    (
-                                      onPressed: ()
-                                      {
-                                        Navigator.pop(context);
-                                        setState(() 
-                                        {
-                                          isFabVisible=true;
-                                        });
-                                      },
-                                      child: const Icon(Icons.close),
-                                    ),
-                                  ),
-                                  ElevatedButton
-                                  (
-                                    child: const Text('Close BottomSheet'),
-                                    onPressed: () => Navigator.pop(context),
-                                  ),
-                                ],
-                              ),
-                            )
-                          );
-                        });
-                      }, 
-                      icon: const Icon(Icons.graphic_eq), 
-                      label: const Text('Indicators'),
-                      style: ElevatedButton.styleFrom
                       (
-                        elevation: 5,
-                        backgroundColor: Colors.black
+                        onPressed: ()
+                        {
+                          log('Bottom Sheet button pressed');
+                          setState(() 
+                          {
+                            isFabVisible=false;  
+                          });
+                          _scaffoldKey.currentState!.showBottomSheet((context)
+                          {
+                            return SizedBox
+                            (
+                              height: size.height*0.3,
+                              child: Center
+                              (
+                                child: Column
+                                (
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>
+                                  [
+                                    ListTile
+                                    (
+                                      leading: const Text('Indicators'),
+                                      trailing: ElevatedButton
+                                      (
+                                        style: ElevatedButton.styleFrom
+                                        (
+                                          elevation: 5
+                                        ),
+                                        onPressed: ()
+                                        {
+                                          Navigator.pop(context);
+                                          setState(() 
+                                          {
+                                            isFabVisible=true;
+                                          });
+                                        },
+                                        child: const Icon(Icons.close),
+                                      ),
+                                    ),
+                                    
+                                    
+                                  ],
+                                ),
+                              )
+                            );
+                          });
+                        }, 
+                        icon: const Icon(Icons.graphic_eq), 
+                        label: const Text('Indicators'),
+                        style: ElevatedButton.styleFrom
+                        (
+                          elevation: 5,
+                          backgroundColor: Colors.black
+                        ),
                       ),
-                    ),
                   ),
-                  const IgnorePointer(child: GraphScreen())
-                ] 
+                ],
               ),
-
               const GraphRow(),
               const AnalystMainScreen(),  
               const PortFolioScreen(),
