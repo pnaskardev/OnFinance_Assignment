@@ -242,22 +242,22 @@ class _HomeScreenState extends State<HomeScreen>
                             ),
                           ) 
                         ),
-                        // Flexible
-                        // (
-                        //   child: SizedBox
-                        //   (
-                        //     child: Align
-                        //     (
-                        //       alignment: Alignment.center,
-                        //       child: ElevatedButton.icon
-                        //       (
-                        //         onPressed: (){}, 
-                        //         icon: const Icon(Icons.graphic_eq_outlined), 
-                        //         label: const Text(''),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
+                        Flexible
+                        (
+                          child: SizedBox
+                          (
+                            child: Align
+                            (
+                              alignment: Alignment.center,
+                              child: ElevatedButton.icon
+                              (
+                                onPressed: (){}, 
+                                icon: const Icon(Icons.graphic_eq_outlined), 
+                                label: const Text(''),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
