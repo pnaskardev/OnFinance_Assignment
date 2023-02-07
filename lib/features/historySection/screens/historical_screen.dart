@@ -49,7 +49,7 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                   color: const Color.fromRGBO(40, 40, 49,1),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('Historical Yield',style:Styles.head1,),
+                    child: Text('Historical Yield',style:Styles.head2,),
                   )
                 ),
               )

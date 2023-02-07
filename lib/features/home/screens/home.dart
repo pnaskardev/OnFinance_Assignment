@@ -6,9 +6,11 @@ import 'package:flutter/rendering.dart';
 import 'package:onfinance_assignment/common/widgets/cryptobar.dart';
 import 'package:onfinance_assignment/common/widgets/floatingActionButton.dart';
 import 'package:onfinance_assignment/features/about/screens/about_screen.dart';
+import 'package:onfinance_assignment/features/historySection/screens/historical_screen.dart';
 import 'package:onfinance_assignment/features/portfolioExposure/screens/portfolio_screen.dart';
 import 'package:onfinance_assignment/common/widgets/graph_row.dart';
 import 'package:onfinance_assignment/features/analystRating/screens/analyst_main_screen.dart';
+import 'package:onfinance_assignment/features/technical_indicators/screens/technical_screen.dart';
 import 'package:onfinance_assignment/features/technical_indicators/widgets/technical_indicators.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
@@ -120,16 +122,12 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               
                 const GraphRow(),
-
-                const AnalystMainScreen(),
-                  
-                
-                  
+                const AnalystMainScreen(),  
                 const PortFolioScreen(),
-                  
+                const HistoricalWidget(),
                 const AboutScreen(),  
                   
-                const TechnicalIndicators()
+                const TechnicalIndicatorScreen()
                   
                   
               ] 

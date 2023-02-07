@@ -7,30 +7,40 @@ class CryptoBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) 
   {
-    return ListTile
+    return ClipRRect
     (
-      leading: const Icon(Icons.currency_bitcoin),
-      subtitle: Text('MATIC',style: Styles.subTitle1,),
-      title: const Text('₹94.634'),
-      trailing: Container
+      borderRadius: const BorderRadius.only
       (
-        child: ElevatedButton
+        bottomLeft: Radius.circular(15),
+        bottomRight: Radius.circular(15.0)
+      ),
+      child: Container
+      (
+        color: Colors.black,
+        child: ListTile
         (
-          onPressed: (){},
-          style: ElevatedButton.styleFrom
+          leading: const Icon(Icons.currency_bitcoin),
+          subtitle: Text('MATIC',style: Styles.subTitle1,),
+          title: const Text('₹94.634'),
+          trailing: ElevatedButton
           (
-            textStyle: Styles.buttonText,
-            backgroundColor: const Color.fromRGBO(255,255,255,1),
-            shape: RoundedRectangleBorder
+            onPressed: (){},
+            style: ElevatedButton.styleFrom
             (
-              borderRadius: BorderRadius.circular(5)
+              textStyle: Styles.buttonText,
+      
+              backgroundColor: Theme.of(context).primaryColor,
+              shape: RoundedRectangleBorder
+              (
+                borderRadius: BorderRadius.circular(5)
+              ),
+              elevation: 15.0,
             ),
-            elevation: 15.0,
-          ),
-          child: Text
-          (
-            'Discuss',
-            style: Styles.buttonText2,
+            child: Text
+            (
+              'Discuss',
+              style: Styles.buttonText2,
+            ),
           ),
         ),
       ),
