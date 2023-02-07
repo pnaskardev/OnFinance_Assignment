@@ -116,7 +116,153 @@ class _HomeScreenState extends State<HomeScreen>
                     // child: CandleGraphWidget(fetchedData: fetchedData,)
                   )
                 ),
-                    
+              
+                Padding
+                (
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container
+                  (
+                    color: Colors.black,
+                    width: size.width,
+                    child: Row
+                    (
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: 
+                      [
+                        
+                        Flexible
+                        (
+                          child:SizedBox
+                          (
+                            height: size.height*0.03,
+                            child: ElevatedButton
+                            (
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom
+                              (
+                                textStyle: Styles.buttonText,
+                                backgroundColor: blueColor,
+                                shape: RoundedRectangleBorder
+                                (
+                                  borderRadius: BorderRadius.circular(5)
+                                ),
+                                elevation: 15.0,
+                              ),
+                              child: const Text('1H'),
+                            ),
+                          ) 
+                        ),
+                        Flexible
+                        (
+                          child:SizedBox
+                          (
+                            height: size.height*0.03,
+                            child: ElevatedButton
+                            (
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom
+                              (
+                                textStyle: Styles.buttonText,
+                                backgroundColor: blueColor,
+                                shape: RoundedRectangleBorder
+                                (
+                                  borderRadius: BorderRadius.circular(5)
+                                ),
+                                elevation: 15.0,
+                              ),
+                              child: const Text('1D'),
+                            ),
+                          ) 
+                        ),
+                        Flexible
+                        (
+                          child:SizedBox
+                          (
+                            height: size.height*0.03,
+                            child: ElevatedButton
+                            (
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom
+                              (
+                                textStyle: Styles.buttonText,
+                                backgroundColor: blueColor,
+                                shape: RoundedRectangleBorder
+                                (
+                                  borderRadius: BorderRadius.circular(5)
+                                ),
+                                elevation: 15.0,
+                              ),
+                              child: const Text('1W'),
+                            ),
+                          ) 
+                        ),
+                        Flexible
+                        (
+                          child:SizedBox
+                          (
+                            height: size.height*0.03,
+                        
+                            child: ElevatedButton
+                            (
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom
+                              (
+                                textStyle: Styles.buttonText,
+                                backgroundColor: blueColor,
+                                shape: RoundedRectangleBorder
+                                (
+                                  borderRadius: BorderRadius.circular(5)
+                                ),
+                                elevation: 15.0,
+                              ),
+                              child: const Text('1M'),
+                            ),
+                          ) 
+                        ),
+                        Flexible
+                        (
+                          child:SizedBox
+                          (
+                            height: size.height*0.03,
+                           
+                            child: ElevatedButton
+                            (
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom
+                              (
+                                textStyle: Styles.buttonText,
+                                backgroundColor: blueColor,
+                                shape: RoundedRectangleBorder
+                                (
+                                  borderRadius: BorderRadius.circular(5)
+                                ),
+                                elevation: 15.0,
+                              ),
+                              child: const Text('5Y'),
+                            ),
+                          ) 
+                        ),
+                        // Flexible
+                        // (
+                        //   child: SizedBox
+                        //   (
+                        //     child: Align
+                        //     (
+                        //       alignment: Alignment.center,
+                        //       child: ElevatedButton.icon
+                        //       (
+                        //         onPressed: (){}, 
+                        //         icon: const Icon(Icons.graphic_eq_outlined), 
+                        //         label: const Text(''),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+
                 Padding
                 (
                   padding: const EdgeInsets.all(8.0),
@@ -132,6 +278,7 @@ class _HomeScreenState extends State<HomeScreen>
                         (
                           children: 
                           [
+                            
                             ExpansionCard(),
                             Align
                             (

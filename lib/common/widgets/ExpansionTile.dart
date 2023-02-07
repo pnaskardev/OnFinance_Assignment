@@ -37,7 +37,7 @@ class _ExpansionCardState extends State<ExpansionCard>
                 children: const
                 [
                   Flexible(child: Text('Analyst Rating')),
-                  Flexible(child: Icon(Icons.alarm))
+                  Flexible(child: Icon(Icons.graphic_eq))
                 ],
               ),
             ),
