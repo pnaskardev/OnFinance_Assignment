@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen>
           (
             children: 
             [
-               CryptoBar(),
+              const CryptoBar(),
 
               const GraphScreen(),
               Row
