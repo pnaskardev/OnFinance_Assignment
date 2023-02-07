@@ -53,6 +53,7 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                   (
                     child: CupertinoSlider
                     (
+                      activeColor: blueColor,
                       min: 0,
                       max: 1000000,
                       value: _sliderValue, 
@@ -102,6 +103,7 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                   (
                     child: CupertinoSlider
                     (
+                      activeColor: blueColor,
                       max: 10,
                       min: 1,
                       value: _yearSliderValue.toDouble(), 

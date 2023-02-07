@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onfinance_assignment/utils/styles.dart';
 
 class TechnicalIndicators extends StatelessWidget {
   const TechnicalIndicators({super.key});
@@ -16,6 +17,11 @@ class TechnicalIndicators extends StatelessWidget {
         (
           children:  
           [
+            ListTile
+            (
+              title: Text('Technical Indicators',style: Styles.head1),
+            ),
+
             ListTile
             (
               title: Row

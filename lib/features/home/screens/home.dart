@@ -9,6 +9,8 @@ import 'package:onfinance_assignment/common/widgets/about_widget.dart';
 import 'package:onfinance_assignment/common/widgets/technical_indicators.dart';
 import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
+import 'package:onfinance_assignment/utils/colors.dart';
+import 'package:onfinance_assignment/utils/styles.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget 
@@ -157,6 +159,57 @@ class _HomeScreenState extends State<HomeScreen>
 
             ] 
           ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Row
+        (
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: 
+          [
+            Flexible
+            (
+              child:SizedBox
+              (
+                child: ElevatedButton
+                (
+                  onPressed: (){},
+                  style: ElevatedButton.styleFrom
+                  (
+                    textStyle: Styles.buttonText,
+                    backgroundColor: blueColor,
+                    shape: RoundedRectangleBorder
+                    (
+                      borderRadius: BorderRadius.circular(15)
+                    ),
+                    elevation: 15.0,
+                  ),
+                  child: const Text('Buy'),
+                ),
+              ) 
+            ),
+            Flexible
+            (
+              child:SizedBox
+              (
+                child: ElevatedButton
+                (
+                  
+                  onPressed: (){},
+                  style: ElevatedButton.styleFrom
+                  (
+                    textStyle: Styles.buttonText,
+                    backgroundColor: blueColor,
+                    shape: RoundedRectangleBorder
+                    (
+                      borderRadius: BorderRadius.circular(15)
+                    ),
+                    elevation: 15.0,
+                  ),
+                  child: const Text('Sell'),
+                ),
+              ) 
+            )
+          ],
         ),
       )
     );

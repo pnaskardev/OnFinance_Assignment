@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:onfinance_assignment/utils/colors.dart';
 
 class Styles
 {
@@ -9,10 +10,14 @@ class Styles
         textStyle: const TextStyle( fontSize: 20)
       );
 
-  static TextStyle teamName =
+  static TextStyle head1 =
     GoogleFonts.sourceSansPro
     (
-      textStyle: const TextStyle( fontSize: 20)
+      textStyle: const TextStyle
+      (
+        fontSize: 25,
+        color: blueColor
+      )
     );
 
     static TextStyle buttonText =
