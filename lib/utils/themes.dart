@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:onfinance_assignment/utils/colors.dart';
 
 class Themes
 {
@@ -15,16 +16,30 @@ class Themes
 
   static final darkTheme=ThemeData
   (
+    appBarTheme: const AppBarTheme
+    (
+      color: Colors.black
+    ),
     useMaterial3: true,
     scaffoldBackgroundColor: Colors.grey.shade900,
-    colorScheme: const ColorScheme.dark(),
+    colorScheme: const ColorScheme.dark().copyWith
+    (
+      primary: const Color.fromRGBO(255, 255, 255,1),
+    ),
+    primaryColor: const Color.fromRGBO(255, 255, 255,1),
+
     fontFamily: GoogleFonts.sourceSansPro().fontFamily,
+    sliderTheme: const SliderThemeData
+    (
+      activeTrackColor: blueColor
+    ) ,
     textTheme: TextTheme
     (
       titleLarge: GoogleFonts.sourceSansPro
       (
         fontSize: 25,
         // fontWeight: FontWeight.bold,
+        color: blueColor,
         letterSpacing: 2,
       ),
       titleMedium: GoogleFonts.sourceSansPro

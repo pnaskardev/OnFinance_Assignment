@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:onfinance_assignment/utils/static_data.dart';
 import 'package:onfinance_assignment/utils/styles.dart';
 
-class ExpansionCard extends StatefulWidget {
+class AnalystWidget extends StatefulWidget {
+  const AnalystWidget({super.key});
+
   @override
-  _ExpansionCardState createState() => _ExpansionCardState();
+  State<AnalystWidget> createState() => _AnalystWidgetState();
 }
 
-class _ExpansionCardState extends State<ExpansionCard> {
+class _AnalystWidgetState extends State<AnalystWidget> {
   bool isExpanded = false;
+  
+  int _index=0;
+  int _minValue=0;
+  final int _maxValue=StaticData().buyStatusList.length-1;
+  int divisions= StaticData().buyStatusList.length-1;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) 
+  {
+    var size=MediaQuery.of(context).size;
     return Center(
       child: Card(
         child: Column(
@@ -25,13 +35,13 @@ class _ExpansionCardState extends State<ExpansionCard> {
                 children: const
                 [
                   Flexible(child: Text('Analyst Rating')),
-                  Flexible(child: Icon(Icons.alarm))
+                  Flexible(child: Icon(Icons.graphic_eq))
                 ],
               ),
             ),
             SizedBox
             (
-              // height: isExpanded ? 200 : 0,
+              
               child: Padding
               (
                 padding: const EdgeInsets.all(8.0),
@@ -77,6 +87,31 @@ class _ExpansionCardState extends State<ExpansionCard> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildLabel
+  (
+    {
+      required String label,
+      required double width,
+      required Color color
+    }
+  )
+  {
+    return SizedBox
+    (
+      width: width,
+      child: Text
+      (
+        label,
+        textAlign: TextAlign.center,
+        style: const  TextStyle
+        (
+          fontSize: 18,
+          
+        ).copyWith(color: color),
       ),
     );
   }

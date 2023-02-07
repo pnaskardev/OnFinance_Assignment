@@ -2,12 +2,15 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:onfinance_assignment/common/widgets/ExpansionTile.dart';
-import 'package:onfinance_assignment/common/widgets/PortfolioExposureCard.dart';
-import 'package:onfinance_assignment/common/widgets/historical_widget.dart';
-import 'package:onfinance_assignment/common/widgets/about_widget.dart';
-import 'package:onfinance_assignment/common/widgets/technical_indicators.dart';
-import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
+import 'package:onfinance_assignment/common/widgets/cryptobar.dart';
+import 'package:onfinance_assignment/common/widgets/floatingActionButton.dart';
+import 'package:onfinance_assignment/features/about/screens/about_screen.dart';
+import 'package:onfinance_assignment/features/graph/screens/graph_screen.dart';
+import 'package:onfinance_assignment/features/historySection/screens/historical_screen.dart';
+import 'package:onfinance_assignment/features/portfolioExposure/screens/portfolio_screen.dart';
+import 'package:onfinance_assignment/common/widgets/graph_row.dart';
+import 'package:onfinance_assignment/features/analystRating/screens/analyst_main_screen.dart';
+import 'package:onfinance_assignment/features/technical_indicators/screens/technical_screen.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +24,8 @@ class HomeScreen extends StatefulWidget
 
 class _HomeScreenState extends State<HomeScreen> 
 {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isFabVisible=true;
   @override
   void initState() 
   {
@@ -30,8 +35,6 @@ class _HomeScreenState extends State<HomeScreen>
       Provider.of<CryptProvider>(context,listen: false).getCandleData();
     });
     super.initState();
-    
-    // Provider.of<CryptProvider>(context,listen: false).getCandleData();
   }
   // @override
   @override
@@ -43,6 +46,8 @@ class _HomeScreenState extends State<HomeScreen>
     (
       child: Scaffold
       (
+        resizeToAvoidBottomInset: false,
+        key: _scaffoldKey,
         appBar: AppBar
         (
           leading: const BackButton(),
@@ -56,108 +61,91 @@ class _HomeScreenState extends State<HomeScreen>
         (
           child: Column
           (
-            children:
+            children: 
             [
-              SizedBox
+               CryptoBar(),
+
+              const GraphScreen(),
+              Row
               (
-                height: size.height*0.6,
-                width: size.width,
-                child: Consumer<CryptProvider>
-                (
-                  builder: (context,value,child)
-                  {
-                    if(value.isLoading==true)
-                    {
-                      return const Center
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: 
+                [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: ElevatedButton.icon
                       (
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    else if(value.isError==true)
-                    {
-                      return const Center
-                      (
-                        child: Icon(Icons.error)
-                      );
-                    }
-                    final fetchedData=value.getData;
-                    return CandleGraphWidget(fetchedData: fetchedData,);
-                  },
-                  // child: CandleGraphWidget(fetchedData: fetchedData,)
-                )
+                        onPressed: ()
+                        {
+                          log('Bottom Sheet button pressed');
+                          setState(() 
+                          {
+                            isFabVisible=false;  
+                          });
+                          _scaffoldKey.currentState!.showBottomSheet((context)
+                          {
+                            return SizedBox
+                            (
+                              height: size.height*0.3,
+                              child: Center
+                              (
+                                child: Column
+                                (
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>
+                                  [
+                                    ListTile
+                                    (
+                                      leading: const Text('Indicators'),
+                                      trailing: ElevatedButton
+                                      (
+                                        style: ElevatedButton.styleFrom
+                                        (
+                                          elevation: 5
+                                        ),
+                                        onPressed: ()
+                                        {
+                                          Navigator.pop(context);
+                                          setState(() 
+                                          {
+                                            isFabVisible=true;
+                                          });
+                                        },
+                                        child: const Icon(Icons.close),
+                                      ),
+                                    ),
+                                    
+                                    
+                                  ],
+                                ),
+                              )
+                            );
+                          });
+                        }, 
+                        icon: const Icon(Icons.graphic_eq), 
+                        label: const Text('Indicators'),
+                        style: ElevatedButton.styleFrom
+                        (
+                          elevation: 5,
+                          backgroundColor: Colors.black
+                        ),
+                      ),
+                  ),
+                ],
               ),
-        
-              Padding
-              (
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox
-                (
-                  // width: size.width*0.8,
-                  child:  Card
-                  (
-                    child: Padding
-                    (
-                      padding:const EdgeInsets.all(10),
-                      child: ExpansionCard(),
-                    ),
-                  )
-                ),
-              ),
-
-              const Padding
-              (
-                padding: EdgeInsets.all(8.0),
-                child: SizedBox
-                (
-                  child:  Card
-                  (
-                    child: Padding
-                    (
-                      padding: EdgeInsets.all(10),
-                      child: PortfolioExpansion(),
-                    ),
-                  )
-                ),
-              ),
-
-              const Padding
-              (
-                padding: EdgeInsets.all(8.0),
-                child: SizedBox
-                (
-                  child:  Card
-                  (
-                    child: Padding
-                    (
-                      padding: EdgeInsets.all(10),
-                      child: HistoricalWidget(),
-                    ),
-                  )
-                ),
-              ),
-
-              const Padding
-              (
-                padding: EdgeInsets.all(16.0),
-                child: SizedBox
-                (
-                  child:  AboutWidget()
-                ),
-              ),
-
-               const Padding
-              (
-                padding: EdgeInsets.all(16.0),
-                child: SizedBox
-                (
-                  child:  TechnicalIndicators()
-                ),
-              ),
-
-
+              const GraphRow(),
+              const AnalystMainScreen(),  
+              const PortFolioScreen(),
+              const HistoricalWidget(),
+              const AboutScreen(),
+              const TechnicalIndicatorScreen()
             ] 
           ),
+          
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: isFabVisible ? const FloatingAButton() : null
       )
     );
   }

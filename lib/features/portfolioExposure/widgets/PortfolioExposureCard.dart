@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onfinance_assignment/utils/colors.dart';
 import 'package:onfinance_assignment/utils/styles.dart';
 
 class PortfolioExpansion extends StatefulWidget 
@@ -35,6 +36,10 @@ class _PortfolioExpansionState extends State<PortfolioExpansion>
                       'Your Portfolio Exposure',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle
+                      (
+                        color: portfolioExposureAccent
+                      ),
                     ),
                     
                   ),
@@ -42,7 +47,7 @@ class _PortfolioExpansionState extends State<PortfolioExpansion>
                   (
                     child: Text
                     (
-                      '14,69,073',
+                      '₹14,69,073',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -69,7 +74,7 @@ class _PortfolioExpansionState extends State<PortfolioExpansion>
                       ),
                       const Text
                       (
-                        '6480',
+                        '₹ 6480',
                         
                       ),
                     ],

@@ -15,9 +15,9 @@ class AboutWidget extends StatelessWidget
       (
         children: 
         [
-          const ListTile
+          ListTile
           (
-            title: Text('About MATIC'),
+            title: Text('About MATIC',style: Styles.head1,),
           ),
           ListTile
           (
