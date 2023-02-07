@@ -2,17 +2,15 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:onfinance_assignment/common/widgets/cryptobar.dart';
 import 'package:onfinance_assignment/common/widgets/floatingActionButton.dart';
 import 'package:onfinance_assignment/features/about/screens/about_screen.dart';
+import 'package:onfinance_assignment/features/graph/screens/graph_screen.dart';
 import 'package:onfinance_assignment/features/historySection/screens/historical_screen.dart';
 import 'package:onfinance_assignment/features/portfolioExposure/screens/portfolio_screen.dart';
 import 'package:onfinance_assignment/common/widgets/graph_row.dart';
 import 'package:onfinance_assignment/features/analystRating/screens/analyst_main_screen.dart';
 import 'package:onfinance_assignment/features/technical_indicators/screens/technical_screen.dart';
-import 'package:onfinance_assignment/features/technical_indicators/widgets/technical_indicators.dart';
-import 'package:onfinance_assignment/features/home/widgets/candle_widget.dart';
 import 'package:onfinance_assignment/providers/CryptProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +24,8 @@ class HomeScreen extends StatefulWidget
 
 class _HomeScreenState extends State<HomeScreen> 
 {
-  bool isFabVisible=false;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isFabVisible=true;
   @override
   void initState() 
   {
@@ -36,19 +35,18 @@ class _HomeScreenState extends State<HomeScreen>
       Provider.of<CryptProvider>(context,listen: false).getCandleData();
     });
     super.initState();
-    
-    // Provider.of<CryptProvider>(context,listen: false).getCandleData();
   }
   // @override
   @override
   Widget build(BuildContext context) 
   {
-    var size=MediaQuery.of(context).size;
     log('build');
     return SafeArea
     (
       child: Scaffold
       (
+        resizeToAvoidBottomInset: false,
+        key: _scaffoldKey,
         appBar: AppBar
         (
           leading: const BackButton(),
@@ -58,87 +56,102 @@ class _HomeScreenState extends State<HomeScreen>
             IconButton(onPressed: (){}, icon:const Icon(Icons.bookmark_rounded))
           ],
         ),
-        body: NotificationListener<UserScrollNotification>
+        body: SingleChildScrollView
         (
-          onNotification: (notification)
-          {
-            if(notification.direction==ScrollDirection.forward)
-            {
-              if(!isFabVisible)
-              {
-                setState(() 
-                {
-                  isFabVisible=true;  
-                });
-              }
-            }
-            else if(notification.direction==ScrollDirection.reverse)
-            {
-              if(isFabVisible==true)
-              {
-                setState(() 
-                {
-                  isFabVisible=false;  
-                });
-              }
-            }
-            return true;
-          },
-          child: SingleChildScrollView
+          child: Column
           (
-            child: Column
-            (
-              children:
-              [
-                // 
-                const CryptoBar(),
-                SizedBox
-                (
-                  height: size.height*0.6,
-                  width: size.width,
-                  child: Consumer<CryptProvider>
+            children: 
+            [
+               CryptoBar(),
+
+              Stack
+              (
+                children:
+                [
+                  Positioned
                   (
-                    builder: (context,value,child)
-                    {
-                      if(value.isLoading==true)
+                    bottom: 60,
+                    left: 250,
+                    child: ElevatedButton.icon
+                    (
+                      onPressed: ()
                       {
-                        return const Center
-                        (
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      else if(value.isError==true)
-                      {
-                        return const Center
-                        (
-                          child: Icon(Icons.error)
-                        );
-                      }
-                      final fetchedData=value.getData;
-                      return CandleGraphWidget(fetchedData: fetchedData,);
-                    },
-                    // child: CandleGraphWidget(fetchedData: fetchedData,)
-                  )
-                ),
-              
-                const GraphRow(),
-                const AnalystMainScreen(),  
-                const PortFolioScreen(),
-                const HistoricalWidget(),
-                const AboutScreen(),  
-                  
-                const TechnicalIndicatorScreen()
-                  
-                  
-              ] 
-            ),
-            
+                        log('Bottom Sheet button pressed');
+                       
+                        // Scaffold.of(context).showBottomSheet((context) 
+                        // {
+                        //    return const BottomModalSheet();
+                        // });
+                        setState(() 
+                        {
+                          isFabVisible=false;  
+                        });
+                        _scaffoldKey.currentState!.showBottomSheet((context)
+                        {
+                          return Container
+                          (
+                            height: 200,
+                            color: Colors.amber,
+                            child: Center
+                            (
+                              child: Column
+                              (
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>
+                                [
+                                  ListTile
+                                  (
+                                    leading: Text('Indicators'),
+                                    trailing: ElevatedButton
+                                    (
+                                      onPressed: ()
+                                      {
+                                        Navigator.pop(context);
+                                        setState(() 
+                                        {
+                                          isFabVisible=true;
+                                        });
+                                      },
+                                      child: const Icon(Icons.close),
+                                    ),
+                                  ),
+                                  ElevatedButton
+                                  (
+                                    child: const Text('Close BottomSheet'),
+                                    onPressed: () => Navigator.pop(context),
+                                  ),
+                                ],
+                              ),
+                            )
+                          );
+                        });
+                      }, 
+                      icon: const Icon(Icons.graphic_eq), 
+                      label: const Text('Indicators'),
+                      style: ElevatedButton.styleFrom
+                      (
+                        elevation: 5,
+                        backgroundColor: Colors.black
+                      ),
+                    ),
+                  ),
+                  const IgnorePointer(child: GraphScreen())
+                ] 
+              ),
+
+              const GraphRow(),
+              const AnalystMainScreen(),  
+              const PortFolioScreen(),
+              const HistoricalWidget(),
+              const AboutScreen(),
+              const TechnicalIndicatorScreen()
+            ] 
           ),
+          
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: /*isFabVisible ?*/const FloatingAButton()
-        // :
-        // null
+        floatingActionButton: isFabVisible ? const FloatingAButton() : null
       )
     );
   }

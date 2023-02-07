@@ -10,22 +10,16 @@ class CandleWidgetServices
     try 
     {
       log('try block entered');
-      //  var response= await http.get(Uri.https(Environment.apiUrl,Environment.endPoint));
-      var response= await http.get(Uri.parse('https://api.polygon.io/v2/aggs/ticker/X:BTCUSD/range/30/day/2023-01-01/2023-02-01?adjusted=true&sort=asc&limit=120&apiKey=cqOtepip_8neQiqOtGQJwpq0W72zVpgC'));
-      // log(response.body);
-      Map<String, dynamic> jsonData=jsonDecode((response.body));
-      log(jsonData['request_id']);
-      
       List<Results> _temp=[];
-      // Future.delayed(const Duration(seconds: 4), () 
-      // {
-      //   var temp=StaticData.ls;
-      //   for(var i in temp)
-      //   {
-      //     log(i.dateTime.toString());
-      //     _temp.add(i);
-      //   }
-      // });
+      await Future.delayed(const Duration(seconds: 2), () 
+      {
+        var temp=StaticData.ls;
+        for(var i in temp)
+        {
+          log(i.dateTime.toString());
+          _temp.add(i);
+        }
+      });
       var temp=StaticData.ls;
       for(var i in temp)
       {

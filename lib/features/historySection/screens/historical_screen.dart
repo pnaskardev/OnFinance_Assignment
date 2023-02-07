@@ -77,18 +77,8 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                 color: Color.fromRGBO(40, 40, 49,1),
                 width: 15.0,
               ),
-              // bottom: BorderSide
-              // (
-              //   color: Colors.black,
-              //   width: 8.0,
-              // ),
             )
           ),
-          // child: const HistoricalWidget()
-          // child: const Text(
-          //   "D",
-          //   style: TextStyle(fontSize: 34.0),
-          // ),
           child: Column
           (
             children: 
@@ -117,7 +107,7 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                         (
                           child: SizedBox
                           (
-                            child: Text("${_sliderValue.toStringAsFixed(0)}"),
+                            child: Text("\$${ _sliderValue.toStringAsFixed(0)}"),
                           ),
                         ),
                         Flexible
@@ -167,7 +157,7 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                         (
                           child: SizedBox
                           (
-                            child: Text("${_yearSliderValue.toStringAsFixed(0)}"),
+                            child: Text("${_yearSliderValue.toStringAsFixed(0)} Year"),
                           ),
                         ),
                         Flexible
@@ -223,7 +213,7 @@ class _HistoricalWidgetState extends State<HistoricalWidget> {
                         ),
                         Flexible
                         (
-                          child:Text("1205.67 MATIC"),
+                          child:Text("1205.67 MATIC",style: TextStyle(color: blueColor),),
                         ),
                         
                       ],

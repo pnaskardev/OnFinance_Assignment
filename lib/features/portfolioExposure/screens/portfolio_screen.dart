@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onfinance_assignment/features/portfolioExposure/widgets/PortfolioExposureCard.dart';
+import 'package:onfinance_assignment/utils/colors.dart';
 
 class PortFolioScreen extends StatelessWidget {
   const PortFolioScreen({super.key});
@@ -41,7 +42,7 @@ class PortFolioScreen extends StatelessWidget {
                       (
                         decoration:  BoxDecoration
                         (
-                          color:  Color.fromRGBO(248, 181, 69,1),
+                          color:  portfolioExposureAccent
                         )
                       ),
                     ),
